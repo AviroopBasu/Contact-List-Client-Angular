@@ -28,7 +28,12 @@ export class ContactsComponent implements OnInit {
     this.contactService.addContact(newContact)
     .subscribe(contact => {
       this.contacts.push(newContact);
+    this.contactService.getContacts()
+      .subscribe((contacts: Contact[]) => {
+        this.contacts = contacts;
+      });
     });
+
   }
 
   deleteContact(id:any){
@@ -41,6 +46,10 @@ export class ContactsComponent implements OnInit {
             }
           }
         }
+        this.contactService.getContacts()
+      .subscribe((contacts: Contact[]) => {
+        this.contacts = contacts;
+      });
       });
   }
 
